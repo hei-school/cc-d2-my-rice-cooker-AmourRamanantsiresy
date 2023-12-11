@@ -1,0 +1,34 @@
+{
+  "name": "cc-d2-my-rice-cooker-amourramanantsiresy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint",
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hei-school/cc-d2-my-rice-cooker-AmourRamanantsiresy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hei-school/cc-d2-my-rice-cooker-AmourRamanantsiresy/issues"
+  },
+  "homepage": "https://github.com/hei-school/cc-d2-my-rice-cooker-AmourRamanantsiresy#readme",
+  "devDependencies": {
+    "gts": "^5.2.0",
+    "typescipt": "^1.0.0",
+    "typescript": "~5.2.0",
+    "@types/node": "20.8.2"
+  }
+}
