@@ -15,9 +15,12 @@ You can :
 - Plug and unplug
 - set cooking time
 - add water 
-- add rice 
-- power on
+- add rice
+- remove water
+- discard rice
+- power on / off
 
 The CLI will handle :
-- overflow
 - power outage
+- water leak
+- overflow
