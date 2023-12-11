@@ -2,32 +2,48 @@ package org.riceCooker.utils;
 
 import java.util.Scanner;
 
-public class Console {
-    private static final Scanner scanner = new Scanner(System.in);
+import static org.riceCooker.utils.Constants.getUi;
 
-    public static void show(String toShow, String[] toReplace, Integer toReplaceLength) {
+/**
+ * Manipulation of console
+ */
+public class Console {
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final ReadFromResource RESOURCE_READER =
+            new ReadFromResource();
+
+    public static void show(
+            final String path,
+            final String[] toReplace,
+            final Integer toReplaceLength
+    ) {
         String replacePattern = "xxx";
         String repeatPattern = "═";
-        String content = toShow;
+        String content = RESOURCE_READER.read(path);
+
 
         if (toReplace != null) {
             for (String value : toReplace) {
                 content = content.replaceFirst(replacePattern, value);
             }
+
+            int repetitionLength = toReplaceLength != null
+                    ? toReplaceLength
+                    : toReplace[0].length();
             content = content.replaceFirst(
                     replacePattern,
-                    repeatPattern.repeat(toReplaceLength != null ? toReplaceLength : toReplace[0].length())
+                    repeatPattern.repeat(repetitionLength)
             );
         }
         System.out.println(content);
     }
 
 
-    public static void show(String toShow, String[] toReplace){
+    public static void show(final String toShow, final String[] toReplace) {
         show(toShow, toReplace, null);
     }
 
-    public static void show(String toShow){
+    public static void show(final String toShow) {
         show(toShow, null, null);
     }
 
@@ -37,7 +53,10 @@ public class Console {
 
             if (os.contains("Windows")) {
                 // For Windows
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                new ProcessBuilder("cmd", "/c", "cls")
+                        .inheritIO()
+                        .start()
+                        .waitFor();
             } else {
                 // For Unix/Linux/Mac
                 System.out.print("\033[H\033[2J");
@@ -48,13 +67,13 @@ public class Console {
         }
     }
 
-    public static void showBanner(){
+    public static void showBanner() {
         clearConsole();
-        show(Ui.banner, null, null);
+        show(getUi("banner"), null, null);
     }
 
-    public static String input(String question){
+    public static String input(final String question) {
         System.out.println(question);
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 }

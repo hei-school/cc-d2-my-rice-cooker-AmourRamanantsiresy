@@ -2,13 +2,14 @@ package org.riceCooker.classes;
 
 import java.util.Random;
 
-import static org.riceCooker.utils.Messages.getMessage;
+import static org.riceCooker.utils.Constants.getMessage;
 
-public class RandomThrow {
+public final class RandomThrow {
+    private static final int MAX_RANDOM_NUMBER = 50;
 
     private static int getRandom() {
         Random random = new Random();
-        return Math.round(random.nextFloat() * 50);
+        return Math.round(random.nextFloat() * MAX_RANDOM_NUMBER);
     }
 
     private static boolean shouldThrow() {
@@ -27,4 +28,6 @@ public class RandomThrow {
         }
     }
 
+    private RandomThrow() {
+    }
 }

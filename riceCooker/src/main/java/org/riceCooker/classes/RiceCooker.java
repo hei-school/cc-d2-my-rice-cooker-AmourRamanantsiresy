@@ -1,10 +1,13 @@
 package org.riceCooker.classes;
 
-import java.util.Random;
-
-import static org.riceCooker.utils.Messages.getMessage;
+import static org.riceCooker.classes.RandomThrow.suddenShutdown;
 import static org.riceCooker.classes.RandomThrow.waterLeakage;
+import static org.riceCooker.utils.Constants.getMessage;
 
+
+/**
+ * Simulate Rice cooker
+ */
 public class RiceCooker {
 
     private final int maxCupNumber = 10;
@@ -13,9 +16,10 @@ public class RiceCooker {
     private boolean plug = false;
     private boolean power = false;
 
-    public RiceCooker() {}
+    public RiceCooker() {
+    }
 
-    public void addWater(int cups) {
+    public void addWater(final int cups) {
         waterLeakage();
         if (waterCupNumber + riceCupNumber + cups > maxCupNumber) {
             throw new RuntimeException(getMessage("error:max-capacity"));
@@ -23,14 +27,14 @@ public class RiceCooker {
         waterCupNumber += cups;
     }
 
-    public void addRice(int cups) {
+    public void addRice(final int cups) {
         if (waterCupNumber + riceCupNumber + cups > maxCupNumber) {
             throw new RuntimeException(getMessage("error:max-capacity"));
         }
         riceCupNumber += cups;
     }
 
-    public void removeWater(int cups) {
+    public void removeWater(final int cups) {
         waterLeakage();
         if (waterCupNumber < cups) {
             throw new RuntimeException(getMessage("error:not-enough-water"));
@@ -38,7 +42,7 @@ public class RiceCooker {
         waterCupNumber -= cups;
     }
 
-    public void discardRice(int cups) {
+    public void discardRice(final int cups) {
         if (riceCupNumber < cups) {
             throw new RuntimeException(getMessage("error:not-enough-rice"));
         }
@@ -46,8 +50,7 @@ public class RiceCooker {
     }
 
     public void togglePlug() {
-        Random random = new Random();
-        int magicNumber = random.nextInt(100);
+        suddenShutdown();
         plug = !power;
     }
 
@@ -74,4 +77,3 @@ public class RiceCooker {
         return power;
     }
 }
-

@@ -5,66 +5,64 @@ import org.riceCooker.classes.RiceCooker;
 import static org.riceCooker.classes.RandomThrow.suddenShutdown;
 import static org.riceCooker.utils.Console.input;
 import static org.riceCooker.utils.Console.show;
-import static org.riceCooker.utils.Messages.getMessage;
-import static org.riceCooker.utils.Ui.menu;
-import static org.riceCooker.utils.Ui.result;
-import static org.riceCooker.utils.Ui.simpleResult;
+import static org.riceCooker.utils.Constants.getMessage;
+import static org.riceCooker.utils.Constants.getUi;
 import static org.riceCooker.utils.Validator.validateNumber;
 
 public class Handler {
 
-    private static void plugHandler(RiceCooker rc) {
+    private static void plugHandler(final RiceCooker rc) {
         String title = !rc.getPlug() ? "Plug" : "Unplug";
         rc.togglePlug();
-        show(result, new String[]{title, "Done"}, title.length());
+        show(getUi("result"), new String[]{title, "Done"}, title.length());
     }
 
-    private static void powerHandler(RiceCooker rc) {
+    private static void powerHandler(final RiceCooker rc) {
         String title = !rc.getPower() ? "Power on" : "Power off";
         show(title, new String[]{title});
         rc.togglePower();
-        show(result, new String[]{title, "Done"}, title.length());
+        show(getUi("result"), new String[]{title, "Done"}, title.length());
     }
 
-    private static void addWaterHandler(RiceCooker rc) {
+    private static void addWaterHandler(final RiceCooker rc) {
         String title = "Add water cups.";
         show(title, new String[]{title});
         String cups = input("Number of cups of water you want to add : ");
         validateNumber(cups);
         rc.addWater(Integer.parseInt(cups));
-        show(simpleResult, new String[]{"Done !"}, title.length());
+        show(getUi("simpleResult"), new String[]{"Done !"}, title.length());
     }
 
-    private static void addRiceHandler(RiceCooker rc) {
+    private static void addRiceHandler(final RiceCooker rc) {
         String title = "Add Rice cups.";
         show(title, new String[]{title});
         String cups = input("Number of cups of rice you want to add : ");
         validateNumber(cups);
         rc.addRice(Integer.parseInt(cups));
-        show(simpleResult, new String[]{"Done !"}, title.length());
+        show(getUi("simpleResult"), new String[]{"Done !"}, title.length());
     }
 
-    private static void removeWaterHandler(RiceCooker rc) {
+    private static void removeWaterHandler(final RiceCooker rc) {
         String title = "Remove water cups.";
         show(title, new String[]{title});
         String cups = input("Number of cups of water you want to remove : ");
         validateNumber(cups);
         rc.removeWater(Integer.parseInt(cups));
-        show(simpleResult, new String[]{"Done !"}, title.length());
+        show(getUi("simpleResult"), new String[]{"Done !"}, title.length());
     }
 
-    private static void discardRiceHandler(RiceCooker rc) {
+    private static void discardRiceHandler(final RiceCooker rc) {
         String title = "Discard Rice cups.";
         show(title, new String[]{title});
         String cups = input("Number of cups of rice you want to discard : ");
         validateNumber(cups);
         rc.discardRice(Integer.parseInt(cups));
-        show(simpleResult, new String[]{"Done !"}, title.length());
+        show(getUi("simpleResult"), new String[]{"Done !"}, title.length());
     }
 
-    static void handler(RiceCooker rc) {
+    static void handler(final RiceCooker rc) {
         suddenShutdown();
-        show(menu, new String[]{
+        show(getUi("menu"), new String[]{
                 Integer.toString(rc.getWaterCupNumber()),
                 Integer.toString(rc.getRiceCupNumber()),
                 rc.getPlug() ? "Plugged" : "Unplugged",

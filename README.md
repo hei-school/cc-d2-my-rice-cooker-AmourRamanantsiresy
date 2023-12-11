@@ -29,12 +29,19 @@ To run this project, you'll need to install Java and maven. You can install them
 ```sh
     git checkout feature/java
 ```
-4. Install dependency and build the project
+4. Check style break the app so return to the version that do not have check style
+
+```sh
+    git checkout 656f294
+```
+5. Install dependency and build the project
 
 ```sh
     mvn package
 ```
-5. Run project
+6. Run project
 ```sh
     java -jar target/riceCooker-1.0.jar
 ```
+# Check style : Sun
+Nb: after check style, the app do not work
